@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "start": "node server.js",
     "postinstall": "npm run build",
-    "build": "vue-cli-service build",
+    "build": "npm run build",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
