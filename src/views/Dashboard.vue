@@ -1,29 +1,27 @@
 <template>
   <div class="container">
-    <LineChart :chartdata="chartdata"
-               :options="options" />
+    <Chart :items="getMetrics" />
   </div>
 </template>
 
 <script>
-import LineChart from '../components/Chart'
-
+import Chart from "../components/Chart"
+import { mapActions, mapGetters } from "vuex"
 export default {
   name: 'LineChartContainer',
-  components: { LineChart },
-  data: () => ({
-    loaded: false,
-    chartdata: null
-  }),
-  async mounted() {
-    this.loaded = false
-    try {
-      const { userlist } = await fetch('/api/userlist')
-      this.chartdata = userlist
-      this.loaded = true
-    } catch (e) {
-      console.error(e)
-    }
+  components: { Chart },
+  computed: {
+    ...mapGetters({
+      getMetrics: "getMetrics"
+    })
+  },
+  methods: {
+    ...mapActions({
+      handleMetrics: "handleMetrics"
+    })
+  },
+  mounted() {
+    this.handleMetrics()
   }
-}
+} 
 </script>

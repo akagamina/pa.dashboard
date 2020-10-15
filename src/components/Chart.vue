@@ -1,20 +1,26 @@
-<script>
-import { Line } from 'vue-chartjs'
+<template>
+  <div>
+    <div v-for="(item, index) in items"
+         :key="index">
+      <column-chart ytitle="Size"
+                    :data="item"></column-chart>
+    </div>
+  </div>
+</template>
 
+<script>
 export default {
-  extends: Line,
+  name: "Chart",
   props: {
-    chartdata: {
+    items: {
       type: Object,
-      default: null
-    },
-    options: {
-      type: Object,
-      default: null
+      default: () => { },
+      required: true
     }
-  },
-  mounted() {
-    this.renderChart(this.chartdata, this.options)
   }
+
 }
 </script>
+
+<style lang="scss" scoped>
+</style>
